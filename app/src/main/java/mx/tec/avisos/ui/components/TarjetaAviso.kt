@@ -3,7 +3,6 @@ package mx.tec.avisos.ui.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
@@ -73,13 +72,27 @@ fun TarjetaAviso(
                 horizontalArrangement = Arrangement.spacedBy(espaciado.sm)
             ) {
                 Avatar(autor)
-                Text(autor, style = MaterialTheme.typography.labelLarge)
-                Text(
-                    text = "· $cuando",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Spacer(Modifier.weight(1f))
+                // Autor y hora en su propia fila, que se queda con todo el espacio
+                // que sobra. Si no cabe, cede el autor —con "…"—, nunca la etiqueta.
+                Row(
+                    modifier = Modifier.weight(1f),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(espaciado.xs)
+                ) {
+                    Text(
+                        text = autor,
+                        style = MaterialTheme.typography.labelLarge,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f, fill = false)
+                    )
+                    Text(
+                        text = "· $cuando",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1
+                    )
+                }
                 if (nuevo) {
                     Surface(
                         color = MaterialTheme.colorScheme.tertiaryContainer,
@@ -89,6 +102,8 @@ fun TarjetaAviso(
                         Text(
                             text = "Nuevo",
                             style = MaterialTheme.typography.labelMedium,
+                            maxLines = 1,
+                            softWrap = false,
                             modifier = Modifier.padding(horizontal = espaciado.sm, vertical = 2.dp)
                         )
                     }

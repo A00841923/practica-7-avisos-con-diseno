@@ -98,6 +98,8 @@ fun BannerSesion(restantes: Long, modifier: Modifier = Modifier) {
             modifier = Modifier.padding(horizontal = espaciado.lg, vertical = espaciado.md),
             verticalArrangement = Arrangement.spacedBy(espaciado.sm)
         ) {
+            // Título y detalle apilados, no lado a lado: con la letra al 200 % en
+            // una fila no caben los dos, y el que tiene `weight` se parte en sílabas.
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     painter = painterResource(R.drawable.ic_reloj),
@@ -106,8 +108,10 @@ fun BannerSesion(restantes: Long, modifier: Modifier = Modifier) {
                     modifier = Modifier.size(20.dp)
                 )
                 Spacer(Modifier.size(espaciado.md))
-                Text(titulo, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
-                Text(detalle, style = MaterialTheme.typography.bodySmall)
+                Column(Modifier.weight(1f)) {
+                    Text(titulo, style = MaterialTheme.typography.titleSmall)
+                    Text(detalle, style = MaterialTheme.typography.bodySmall)
+                }
             }
             if (estado != EstadoAcceso.VENCIDO) {
                 LinearProgressIndicator(
