@@ -41,6 +41,8 @@ fun AvisosNavHost(sesion: Sesion, onSalir: () -> Unit) {
 
             PublicarScreen(
                 uiState = viewModel.uiState,
+                // Para la vista previa: el aviso sale firmado por quien tiene la sesión.
+                autor = sesion.usuario,
                 onTituloChange = viewModel::onTituloChange,
                 onCuerpoChange = viewModel::onCuerpoChange,
                 // El popBackStack ocurre cuando el servidor aceptó, no antes.

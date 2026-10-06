@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import mx.tec.avisos.ui.components.CargandoView
+import mx.tec.avisos.ui.components.EstadoVista
 import mx.tec.avisos.ui.screens.LoginScreen
 import mx.tec.avisos.ui.state.AppViewModelProvider
 import mx.tec.avisos.ui.state.LoginViewModel
@@ -25,7 +25,7 @@ fun AvisosApp() {
     val estado by sesionViewModel.estado.collectAsStateWithLifecycle()
 
     when (val actual = estado) {
-        SesionEstado.Cargando -> CargandoView()
+        SesionEstado.Cargando -> EstadoVista.Cargando()
 
         SesionEstado.Anonimo -> {
             val loginViewModel: LoginViewModel = viewModel(factory = AppViewModelProvider.Factory)
