@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
  * (#0E5C4A), la misma técnica que usa Material Theme Builder.
  */
 val ColoresClaros = lightColorScheme(
-    primary = Color(0xFF006B55),
+    primary = Color(0xFF8E2C48),
     onPrimary = Color(0xFFFFFFFF),
     primaryContainer = Color(0xFF9EF2D5),
     onPrimaryContainer = Color(0xFF00513F),
